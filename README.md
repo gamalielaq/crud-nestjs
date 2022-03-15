@@ -1,4 +1,4 @@
-## Crud NestJs TypeOrm Msql
+## Crud NestJs TypeOrm Mysql
 
 
 ## Installation

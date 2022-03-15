@@ -1,0 +1,17 @@
+//Intalar las siguientes dependencias
+
+//Paquetes
+
+npm i bcryptjs
+npm i @types/bcryptjs
+
+# LOCAL STRATEGY
+- @nestjs/passport
+- passport
+- passport-local
+- @types/passport-local (DEV)
+
+# JWT STRATEGY
+- @nestjs/jwt
+- passport-jwt
+- @types/passport-jwt (DEV)

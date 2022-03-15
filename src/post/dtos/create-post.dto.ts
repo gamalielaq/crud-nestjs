@@ -1,4 +1,4 @@
-import { EnumToString } from './../../helpers/enumToString';
+import { EnumToString } from '../../common/helpers/enumToString';
 import { IsArray, IsBoolean, IsEnum, IsString } from "class-validator";
 import { PostCategory } from "../enums";
 
