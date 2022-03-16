@@ -1,8 +1,11 @@
+import { Auth } from 'src/common/decorators';
 import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { EditUserDto } from './dtos';
 import { UserService } from './user.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Users Routs')
 @Controller('user')
 export class UserController {
 
@@ -27,6 +30,7 @@ export class UserController {
         return {data}
     }
 
+    @Auth()
     @Post()
     async crateone(
         @Body() dto: CreateUserDto
@@ -38,6 +42,7 @@ export class UserController {
         }
     }
 
+    @Auth()
     @Put(':id')
     async editOne(
         @Param('id') id: number,
@@ -50,6 +55,7 @@ export class UserController {
         }
     }
 
+    @Auth()
     @Delete(':id')
     async deleteOne(
         @Param('id') id: number

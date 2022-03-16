@@ -4,8 +4,9 @@
 
 npm i bcryptjs
 npm i @types/bcryptjs
+npm i nest-access-control
 
-# LOCAL STRATEGY
+# LOCAL STRATEGY 
 - @nestjs/passport
 - passport
 - passport-local
