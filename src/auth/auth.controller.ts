@@ -1,9 +1,12 @@
+import { JwtAuthGuard } from './guards';
+import { LocalAuthGuard } from './guards';
 import { AuthService } from './auth.service';
-import { LocalAuthGuard } from './guards/local.guard';
-import { Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { User as UserEntity } from './../user/entities/user.entity';
-import { User } from 'src/common/decorators';
+import { User, Auth } from 'src/common/decorators';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Auth Routs')
 @Controller('auth')
 export class AuthController {
 
@@ -13,14 +16,41 @@ export class AuthController {
 
     @UseGuards(LocalAuthGuard)
     @Post('login')
-    login(
+    async login(
         @User() user: UserEntity,
     ) {
-        return user;
+        const data = await this.authService.login(user);
+        return {
+            message: 'Login Exitoso',
+            data
+        };
     }
 
+
+    // @UseGuards(JwtAuthGuard)
+    @Auth()
+    @Post('refresh-token')
+    async refreshToken(
+        @User() user: UserEntity,
+    ) {
+        const data = await this.authService.login(user);
+        return {
+            message: 'Refresh Exitoso',
+            data
+        };
+    }
+
+
+    // @UseGuards(JwtAuthGuard)
+    // @ApiBearerAuth()
+    @Auth()
     @Get('profile')
-    profile() {
-        return 'Estos son tus datos'
+    profile(
+        @User() user: UserEntity
+    ) {
+        return {
+            message: 'Petición Correcta',
+            user
+        }
     }
 }
